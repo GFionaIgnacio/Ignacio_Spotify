@@ -377,40 +377,36 @@ plt.show()  # Show the heat map
 * How do the numbers of tracks in spotify_playlists, deezer_playlist, and apple_playlists compare? Which platform seems to favor the most popular tracks?
 
 ``` python
-# Create sets of track IDs for each platform
-spotifyPlaylists = set(cleaned['in_spotify_playlists'].dropna().unique())
-deezerPlaylists = set(cleaned['in_deezer_playlists'].dropna().unique())
-applePlaylists = set(cleaned['in_apple_playlists'].dropna().unique())
-```
-
-``` python
-# Count unique tracks for each platform
-uniqueSpotifyPlaylists = len(spotifyPlaylists)
-uniqueDeezerPlaylists = len(deezerPlaylists)
-uniqueApplePlaylists = len(applePlaylists)
+# Count total tracks for each platform
+totalSpotifyTracks = cleaned['in_spotify_playlists'].dropna().sum()  # Sum all tracks in Spotify playlists
+totalDeezerTracks = cleaned['in_deezer_playlists'].dropna().sum()    # Sum all tracks in Deezer playlists
+totalAppleTracks = cleaned['in_apple_playlists'].dropna().sum()      # Sum all tracks in Apple playlists
 ```
 
 ``` python
 # Prepare data for the pie chart
 platform_counts = {
-    'Spotify Playlists': uniqueSpotifyPlaylists,
-    'Deezer Playlists': uniqueDeezerPlaylists,
-    'Apple Music Playlists': uniqueApplePlaylists
+    'Spotify Playlists': totalSpotifyTracks, # Total tracks for Spotify
+    'Deezer Playlists': totalDeezerTracks, # Total tracks for Deezer
+    'Apple Music Playlists': totalAppleTracks # Total tracks for Apple
 }
 ```
 
 ``` python
-# Define shades of choice for the pie chart, mine is pink
+# Define shades of choice for the pie chart, mine is pink 
 pink_shades = ['#FFC0CB', '#FF69B4', '#FF1493']  # Light pink, Hot pink, Deep pink
-
-# Create a pie chart
-plt.figure(figsize=(8, 8)) # Set the figure size
-plt.pie(platform_counts.values(), labels=platform_counts.keys(), autopct='%1.1f%%', startangle=140, colors=pink_shades) # Create the pie chart with percentages
-plt.title('Proportion of Unique Tracks on Different Platforms') # Add title to the pie chart
-plt.axis('equal')  # Equal aspect ratio ensures the pie chart is circular.
-plt.show() # Display the pie chart
 ```
-<img width="650" alt="Screenshot 2024-11-03 at 2 15 54 AM" src="https://github.com/user-attachments/assets/14a07b77-f404-49b3-b302-52386d3010ef">
+
+``` python
+# Create a pie chart
+plt.figure(figsize=(8, 8))  # Set the figure size
+plt.pie(platform_counts.values(), labels=platform_counts.keys(), autopct='%1.1f%%', startangle=140, colors=pink_shades)  # Create the pie chart with percentages
+plt.title('Proportion of Total Tracks on Different Platforms')  # Add title to the pie chart
+plt.legend() # Add legend
+plt.axis('equal')  # Equal aspect ratio. This will ensure the pie chart is circular.
+plt.show()  # Show the pie chart
+```
+<img width="654" alt="Screenshot 2024-11-03 at 5 23 04 PM" src="https://github.com/user-attachments/assets/cbdef72f-47fe-4277-80e3-d30900bad356">
 
 ### Advanced Analysis
 
@@ -418,48 +414,35 @@ plt.show() # Display the pie chart
 * Do certain genres or artists consistently appear in more playlists or charts? Perform an analysis to compare the most frequently appearing artists in playlists or charts.
 
 ``` python
-# Identify patterns among tracks with the same key or mode
 # Group by 'key' and 'mode' and calculate the average streams
-key_mode_analysis = df.groupby(['key', 'mode'])['streams'].mean().reset_index() # Calculate average streams
-key_mode_analysis = key_mode_analysis.sort_values(by='streams', ascending=False) # Sort results by average streams in descending order
+key_mode_analysis = df.groupby(['key', 'mode'])['streams'].mean().reset_index() 
 
-print("Average Streams by Key and Mode:")
-print(key_mode_analysis)
+# Filter for Major and Minor modes
+key_mode_analysis = key_mode_analysis[key_mode_analysis['mode'].isin(['Major', 'Minor'])]
 
-# Define 11 distinct shades of choice (mine is pink) for the bars
-pink_colors = [
-    "#FFB6C1",  # Light Pink
-    "#FF69B4",  # Barbie Pink
-    "#FF1493",  # Deep Pink
-    "#FF007F",  # Vivid Pink
-    "#D5006D",  # Slight Dark Pink
-    "#C71585",  # Medium Violet Red
-    "#DB7093",  # Pale Violet Red
-    "#FFC0CB",  # Pink
-    "#FF3399",  # Bright Pink
-    "#FF66B2",  # Hot Pink
-    "#FF4D99"   # Neon Pink
-]
+# Calculate average streams for Major and Minor for each key
+avg_streams = key_mode_analysis.groupby(['key', 'mode'])['streams'].mean().unstack().fillna(0)
+
+# Set the colors for Major and Minor
+colors = ['#FFB6C1', '#FF69B4']  # Light Pink for Major, Barbie Pink for Minor
 
 # Plotting average streams by key and mode
-plt.figure(figsize=(12, 6))
-# Loop through each unique key to create a bar for each mode within that key
-for idx, key in enumerate(key_mode_analysis['key'].unique()):
-    subset = key_mode_analysis[key_mode_analysis['key'] == key] # Get data for the current key
-    # Ensure we cycle through pink_colors if there are more keys than colors
-    color = pink_colors[idx % len(pink_colors)] # Select a color for the current key
-    plt.bar(subset['mode'].astype(str) + f" (Key {key})", subset['streams'], color=color, edgecolor='black', label=f"Key {key}")  # Create a bar for each mode with the corresponding key
+plt.figure(figsize=(12, 6)) # Figure Size
+avg_streams.plot(kind='bar', color=colors, edgecolor='black') # Create a bar plot
 
-plt.title('Average Streams by Key and Mode') # Add title to the graph
+plt.title('Average Streams by Key and Mode') # Add title
 plt.ylabel('Average Streams') # Add y-axis label
-plt.xlabel('Key and Mode') # Add x-axis label
-plt.xticks(rotation=90) # Rotate x-tick labels for better readability
-plt.legend(title='Key') # Add a legend to the plot with the title 'Key'
-plt.tight_layout() # Adjust layout to prevent overlap of elements
-plt.show() #Show the graph 
+plt.xlabel('Key') # Add x-axis label
+plt.xticks(rotation=0)  # Set x-tick labels to horizontal
+plt.legend(title='Mode')  # Add a legend for Major and Minor
+plt.tight_layout()  # Adjust layout to prevent overlap of elements
+plt.show()  # Show the graph
 ```
-<img width="240" alt="Screenshot 2024-11-03 at 2 22 25 AM" src="https://github.com/user-attachments/assets/3e9852bb-abab-4dfb-91cf-ec7e7666dfff">
-<img width="1005" alt="Screenshot 2024-11-03 at 2 22 49 AM" src="https://github.com/user-attachments/assets/94c64700-16bc-4f37-84c1-44ec3db43883">
+<img width="572" alt="Screenshot 2024-11-03 at 5 47 44 PM" src="https://github.com/user-attachments/assets/3a2ca6e4-8433-454b-87cb-adf221245541">
+
+``` python
+
+```
 
 # References: 
 
