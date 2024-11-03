@@ -1,4 +1,4 @@
-# EDA l Spotify Songs 2023
+# Exploratory Data Analysis l Spotify Songs 2023
 ![image](https://github.com/user-attachments/assets/1f182d92-64ab-4025-9d4d-1fd05256a86b)
 
 ## Overview
