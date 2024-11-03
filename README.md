@@ -205,7 +205,7 @@ print(f"Standard Deviation of streams: {stdStreams}") # Print the standard devia
 
 ``` python
 # Distribution of 'released_year' and 'artist_count'
-plt.figure(figsize=(15, 5))
+plt.figure(figsize=(15, 5)) # Set the figure size
 
 # Plotting the distribution of released_year
 plt.subplot(1, 2, 1)  # 1 row, 2 columns, 1st subplot
