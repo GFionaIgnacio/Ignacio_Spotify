@@ -258,7 +258,27 @@ print(f"\nTotal number of outliers in Artist Count: {totalOutliersArtist}") # Di
 * Who are the top 5 most frequent artists based on the number of tracks in the dataset?
 
 ``` python
-# Track with the highest number of streams and the top 5 most streamed tracks
+# Select the 'track_name' and 'streams' columns, then find the top 5 tracks with the highest streams
+topStreamedTracks = df[['track_name', 'streams']].nlargest(5, 'streams')
+
+# Sort the top tracks in ascending order for correct plotting
+topStreamedTracks = topStreamedTracks.sort_values(by='streams', ascending=True)
+
+# Create a horizontal bar graph
+plt.figure(figsize=(10, 6))  # Set the figure size
+plt.barh(topStreamedTracks['track_name'], topStreamedTracks['streams'], color='#FF69B4', edgecolor='black')  # Horizontal bar graph
+
+# Add titles and labels
+plt.title('Top 5 Most Streamed Tracks')  # Add title
+plt.xlabel('Number of Streams')  # Add x-axis label
+plt.ylabel('Tracks')  # Add y-axis label
+plt.tight_layout()  # Adjust layout to prevent overlap of elements
+plt.show()  # Display the plot
+```
+<img width="834" alt="Screenshot 2024-11-03 at 7 10 53 PM" src="https://github.com/user-attachments/assets/26c8ccfe-f3a1-4b1b-812b-c23c92cab612">
+
+``` python
+# Printed top 5 most streamed tracks
 # Select the 'track_name' and 'streams' columns, then find the top 5 tracks with the highest streams
 topStreamedTracks = df[['track_name', 'streams']].nlargest(5, 'streams')
 
@@ -266,10 +286,36 @@ topStreamedTracks = df[['track_name', 'streams']].nlargest(5, 'streams')
 print("\nTop 5 Most Streamed Tracks:")
 print(tabulate(topStreamedTracks, headers='keys', tablefmt='pretty', showindex=False, stralign='left'))
 ```
-<img width="513" alt="Screenshot 2024-11-03 at 1 35 03 AM" src="https://github.com/user-attachments/assets/3b05fa6f-e4b3-4375-8042-d0eed5a7e825">
+<img width="416" alt="Screenshot 2024-11-03 at 7 11 36 PM" src="https://github.com/user-attachments/assets/0af84e33-c7bf-4745-a506-98194a57ed73">
 
 ``` python
-# Top 5 most frequent artists based on the number of tracks in the dataset
+# Group by artist name and count the number of tracks
+artistTrackCount = df['artist(s)_name'].value_counts().reset_index()
+
+# Rename the columns for clarity
+artistTrackCount.columns = ['artist(s)_name', 'track_count']
+
+# Select the top 5 artists with the most tracks
+topArtists = artistTrackCount.nlargest(5, 'track_count')
+
+# Sort the top artists in descending order (most tracks at the top)
+topArtists = topArtists.sort_values(by='track_count', ascending=True)  # Sort in ascending order for bar chart
+
+# Create a bar graph for the top 5 artists
+plt.figure(figsize=(10, 6))  # Set the figure size
+plt.barh(topArtists['artist(s)_name'], topArtists['track_count'], color='#FF69B4', edgecolor='black')  # Horizontal bar graph
+
+# Add titles and labels
+plt.title('Top 5 Most Frequent Artists Based on Number of Tracks')  # Add title
+plt.xlabel('Number of Tracks')  # Add x-axis label
+plt.ylabel('Artists')  # Add y-axis label
+plt.tight_layout()  # Adjust layout to prevent overlap of elements
+plt.show()  # Display the plot
+```
+<img width="812" alt="Screenshot 2024-11-03 at 7 12 35 PM" src="https://github.com/user-attachments/assets/974873ff-960e-4982-8a9c-ecbf1d9c29dc">
+
+``` python
+# Printed top 5 most frequent artists based on the number of tracks in the dataset
 # Count the occurrences of each artist in the 'artist(s)_name' column and select the top 5
 topArtists = cleaned['artist(s)_name'].value_counts().nlargest(5)
 topArtistsCleaned = topArtists.reset_index()  # Convert to DataFrame
@@ -441,16 +487,77 @@ plt.show()  # Show the graph
 <img width="572" alt="Screenshot 2024-11-03 at 5 47 44 PM" src="https://github.com/user-attachments/assets/3a2ca6e4-8433-454b-87cb-adf221245541">
 
 ``` python
+# Calculate total appearances in playlists for each artist
+cleaned['total_playlists'] = (cleaned['in_spotify_playlists'] + # Spotify Playlists
+                               cleaned['in_apple_playlists'] + # Apple Playlists
+                               cleaned['in_deezer_playlists']) # Deezer Playlists
 
+# Convert to numeric
+cleaned['in_spotify_charts'] = pd.to_numeric(cleaned['in_spotify_charts'], errors='coerce') # Spotify Charts
+cleaned['in_apple_charts'] = pd.to_numeric(cleaned['in_apple_charts'], errors='coerce') # Apple Charts
+cleaned['in_deezer_charts'] = pd.to_numeric(cleaned['in_deezer_charts'], errors='coerce') # Deezer Charts
+cleaned['in_shazam_charts'] = pd.to_numeric(cleaned['in_shazam_charts'], errors='coerce') # Shazam Charts
+
+# Sum the all charts 
+cleaned['total_charts'] = (cleaned['in_spotify_charts'].fillna(0) + # Spotify Charts
+                            cleaned['in_apple_charts'].fillna(0) + # Apple Charts
+                            cleaned['in_deezer_charts'].fillna(0) + # Deezer Charts
+                            cleaned['in_shazam_charts'].fillna(0)) # Shazam Charts
 ```
 
-# References: 
+``` python
+# Analyze total appearances in playlists and charts across different platforms
+artistAnalysis = cleaned.groupby('artist(s)_name').agg(
+    playlists=('total_playlists', 'sum'),  # Sum total playlists =
+    charts=('total_charts', 'sum')  # Sum total chart 
+).reset_index()  # Reset index to convert grouped data back into a DataFrame
+
+# Sort artists based on total appearances
+artistAnalysis = artistAnalysis.sort_values(by=['playlists', 'charts'], ascending=False)
+
+# Select the top 10 artists for visualization
+topArtists = artistAnalysis.nlargest(10, 'playlists') 
+```
+
+``` python
+# Set up the bar plot
+plt.figure(figsize=(14, 8))  # Figure size
+
+# Set the index for the bar plot
+index = range(len(topArtists))
+
+# Plot total playlists
+plt.bar(index, topArtists['playlists'], width=0.4, label='Playlists', color='#FF69B4', edgecolor='black')
+
+# Plot total charts, offsetting by 0.4 for separation
+plt.bar([i + 0.4 for i in index], topArtists['charts'], width=0.4, label='Charts', color='#FFB6C1', edgecolor='black')
+
+# Adding titles and labels
+plt.title('Comparison of Most Frequently Appearing Artists in Playlists vs Charts')  # Add title
+plt.ylabel('Count')  # Add y-axis label
+plt.xlabel('Artists')  # Add x-axis label
+plt.xticks([i + 0.2 for i in index], topArtists['artist(s)_name'], rotation=90)  # Rotate x-tick labels for better readability
+plt.legend(title='Legend')  # Add a legend to distinguish between playlists and charts
+plt.tight_layout()  # Adjust layout to prevent overlap of elements
+plt.show()  # Display the plot
+```
+<img width="1014" alt="Screenshot 2024-11-03 at 6 46 17 PM" src="https://github.com/user-attachments/assets/5b736c7c-1cb8-45b7-9163-21b46fd77d0d">
+
+
+# References 
+* Camilleri, P., & McKinney, T. (2015, October 22). Plotting a 2D heatmap. Stack Overflow. https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap 
+* How to create a linear colormap with color defined at specific values with matplotlib? (n.d.). Stack Overflow. https://stackoverflow.com/questions/74731282/how-to-create-a-linear-colormap-with-color-defined-at-specific-values-with-matpl 
+* Ishaan Sharma. (2020, September 11). python matplotlib graphs using csv files, bar, pie, line graph [Video]. YouTube. https://www.youtube.com/watch?v=spALaS5BFX8 
+* Moo, M. (2016, May 26). Encoding Error in Panda read_csv. Stack Overflow. https://stackoverflow.com/questions/30462807/encoding-error-in-panda-read-csv 
+* Peres, G. (2022, July 22). Python Pandas dataframe find missing values. Stack Overflow. https://stackoverflow.com/questions/59694988/python-pandas-dataframe-find-missing-values 
+* Pluta, J. (2021, May 15). How to display pretty tables in terminal with tabulate python package? Stack Overflow. https://stackoverflow.com/questions/67548514/how-to-display-pretty-tables-in-terminal-with-tabulate-python-package 
+* Shah, N. (2016, February 20). How do I get the row count of a Pandas DataFrame? (P. Mortensen, Ed.). Stack Overflow. https://stackoverflow.com/questions/15943769/how-do-i-get-the-row-count-of-a-pandas-dataframe 
 
 # Author
 <img width="289" alt="Screenshot 2024-11-03 at 2 42 26 AM" src="https://github.com/user-attachments/assets/5304be68-5583-47a4-bc1f-2b28ac3ceea7">
 
-## Ginger Fiona R. Ignacio
-### 2ECE-B
+### Ginger Fiona R. Ignacio
+#### 2ECE-B
 
 
 
