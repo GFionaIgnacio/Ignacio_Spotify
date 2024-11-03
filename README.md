@@ -491,28 +491,49 @@ plt.show()  # Show the graph
 <img width="572" alt="Screenshot 2024-11-03 at 5 47 44 PM" src="https://github.com/user-attachments/assets/3a2ca6e4-8433-454b-87cb-adf221245541">
 
 ``` python
+# Calculate total playlists and charts, using .loc[] to avoid SettingWithCopyWarning
+cleaned.loc[:, 'total_playlists'] = (cleaned['in_spotify_playlists'].fillna(0) + # Fill NaN values with 0 and sum Spotify playlists
+                                      cleaned['in_apple_playlists'].fillna(0) + # Fill NaN values with 0 and sum Apple playlists
+                                      cleaned['in_deezer_playlists'].fillna(0)) # Fill NaN values with 0 and sum Deezer playlists
+
+cleaned.loc[:, 'total_charts'] = (cleaned['in_spotify_charts'].fillna(0) + # Fill NaN values with 0 and sum Spotify charts
+                                   cleaned['in_apple_charts'].fillna(0) + # Fill NaN values with 0 and sum Apple charts
+                                   cleaned['in_deezer_charts'].fillna(0) + # Fill NaN values with 0 and sum Deezer charts
+                                   cleaned['in_shazam_charts'].fillna(0)) # Fill NaN values with 0 and sum Shazam charts
+```
+
+``` python
+# Calculate the top 10 artists 
+topArtists = cleaned['artist(s)_name'].value_counts().nlargest(10)  # Get the top 10 artists 
+topArtistsCleaned = topArtists.reset_index()  # Convert to DataFrame
+topArtistsCleaned.columns = ['artist(s)_name', 'track_count']  # Rename the columns
+
 # Filter the dataset for the top 10 artists based on appearance counts
-topArtistsList = topArtistsCleaned['artist(s)_name'] # List of top 10 artist names
-topArtistsData = cleaned[cleaned['artist(s)_name'].isin(topArtistsList)] # Filter the DataFrame to include only rows with top 10 artists
+topArtistsList = topArtistsCleaned['artist(s)_name']  # List of top 10 artist names
+topArtistsData = cleaned[cleaned['artist(s)_name'].isin(topArtistsList)]  # Filter the DataFrame
+```
 
-# Calculate total playlist and chart appearances for each top artist
+``` python
+# Calculate total playlist and chart 
 artistComparison = topArtistsData.groupby('artist(s)_name').agg(
-    total_playlists=('total_playlists', 'sum'), # Get the summation of playlists appearances per artist
-    total_charts=('total_charts', 'sum') # Get the summation of charts appearances per artist
-).reset_index() # Reset the index 
+    total_playlists=('total_playlists', 'sum'),  # Summation of playlists 
+    total_charts=('total_charts', 'sum')  # Summation of charts
+).reset_index()  # Reset the index 
 
-# Add a column to sum playlist and chart
+# Add a column to sum playlist and chart 
 artistComparison['total_appearances'] = artistComparison['total_playlists'] + artistComparison['total_charts']
 
 # Sort the DataFrame by total appearances (descending order, that is why ascending=False)
 artistComparison = artistComparison.sort_values(by='total_appearances', ascending=False)
+```
 
+``` python
 # Plotting the comparison of playlists and charts
-plt.figure(figsize=(13, 6)) # Set the figure size
+plt.figure(figsize=(13, 6))  # Set the figure size
 
 # Set the bar width and positions
-bar_width = 0.36 # Set the width depending on your preferences, mine is 0.36
-index = np.arange(len(artistComparison)) # Position of artist
+bar_width = 0.36  # Set the width depending on your preferences
+index = np.arange(len(artistComparison))  # Position of artist
 
 # Plot total playlist appearances
 plt.bar(index, artistComparison['total_playlists'], bar_width, label='Playlists', color='#FF69B4', edgecolor='black')
@@ -521,15 +542,16 @@ plt.bar(index, artistComparison['total_playlists'], bar_width, label='Playlists'
 plt.bar(index + bar_width, artistComparison['total_charts'], bar_width, label='Charts', color='#FFB6C1', edgecolor='black')
 
 # Adding titles and labels
-plt.title('Comparison of the Most Frequently Appearing Artists in Playlists vs Charts.') # Add title 
-plt.xlabel('Artists') # Add x-axis label
-plt.ylabel('Count') # Add y-axis label
-plt.xticks(index + bar_width / 2, artistComparison['artist(s)_name'], rotation=45) # Set artist names as x-tick labels, rotation is 45 so that the names of the artist are more readable
-plt.legend(title='Playlist vs Chart') # Add Legend
+plt.title('Comparison of the Most Frequently Appearing Artists in Playlists vs Charts.')  # Add title 
+plt.xlabel('Artists')  # Add x-axis label
+plt.ylabel('Count')  # Add y-axis label
+plt.xticks(index + bar_width / 2, artistComparison['artist(s)_name'], rotation=45)  # Set artist names as x-tick labels
+plt.legend(title='Playlist vs Chart')  # Add Legend
 
-plt.tight_layout() # Adjust layout
-plt.show() # Show the graph 
+plt.tight_layout()  # Adjust layout
+plt.show()  # Show the graph
 ```
+
 <img width="898" alt="Screenshot 2024-11-04 at 12 18 11 AM" src="https://github.com/user-attachments/assets/fd5bcbec-402b-424c-be58-f78fe87762da">
 
 # References 
