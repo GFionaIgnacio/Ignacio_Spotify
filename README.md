@@ -5,9 +5,11 @@
 ##### This repository provides a Jupyter Notebook performing exploratory data analysis (EDA) on a Spotify dataset of the most streamed songs in 2023. The objective is to uncover patterns, visualize trends, and interpret relationships between different song attributes and their popularity (measured by streams).
 
 ## Libraries Used
-##### Numpy
-##### Pandas
-##### Matplotlib
+##### numpy
+##### pandas
+##### matplotlib
+##### tabulate
+##### matplotlib.colors
 
 ## Dataset
 ##### The dataset, stored as spotify-2023.csv and sourced from Kaggle, includes detailed information about various songs, such as:
@@ -489,62 +491,46 @@ plt.show()  # Show the graph
 <img width="572" alt="Screenshot 2024-11-03 at 5 47 44 PM" src="https://github.com/user-attachments/assets/3a2ca6e4-8433-454b-87cb-adf221245541">
 
 ``` python
-# Calculate total appearances in playlists for each artist
-cleaned['total_playlists'] = (cleaned['in_spotify_playlists'] + # Spotify Playlists
-                               cleaned['in_apple_playlists'] + # Apple Playlists
-                               cleaned['in_deezer_playlists']) # Deezer Playlists
+# Filter the dataset for the top 10 artists based on appearance counts
+topArtistsList = topArtistsCleaned['artist(s)_name'] # List of top 10 artist names
+topArtistsData = cleaned[cleaned['artist(s)_name'].isin(topArtistsList)] # Filter the DataFrame to include only rows with top 10 artists
 
-# Convert to numeric
-cleaned['in_spotify_charts'] = pd.to_numeric(cleaned['in_spotify_charts'], errors='coerce') # Spotify Charts
-cleaned['in_apple_charts'] = pd.to_numeric(cleaned['in_apple_charts'], errors='coerce') # Apple Charts
-cleaned['in_deezer_charts'] = pd.to_numeric(cleaned['in_deezer_charts'], errors='coerce') # Deezer Charts
-cleaned['in_shazam_charts'] = pd.to_numeric(cleaned['in_shazam_charts'], errors='coerce') # Shazam Charts
+# Calculate total playlist and chart appearances for each top artist
+artistComparison = topArtistsData.groupby('artist(s)_name').agg(
+    total_playlists=('total_playlists', 'sum'), # Get the summation of playlists appearances per artist
+    total_charts=('total_charts', 'sum') # Get the summation of charts appearances per artist
+).reset_index() # Reset the index 
 
-# Sum the all charts 
-cleaned['total_charts'] = (cleaned['in_spotify_charts'].fillna(0) + # Spotify Charts
-                            cleaned['in_apple_charts'].fillna(0) + # Apple Charts
-                            cleaned['in_deezer_charts'].fillna(0) + # Deezer Charts
-                            cleaned['in_shazam_charts'].fillna(0)) # Shazam Charts
-```
+# Add a column to sum playlist and chart
+artistComparison['total_appearances'] = artistComparison['total_playlists'] + artistComparison['total_charts']
 
-``` python
-# Analyze total appearances in playlists and charts across different platforms
-artistAnalysis = cleaned.groupby('artist(s)_name').agg(
-    playlists=('total_playlists', 'sum'),  # Sum total playlists =
-    charts=('total_charts', 'sum')  # Sum total chart 
-).reset_index()  # Reset index to convert grouped data back into a DataFrame
+# Sort the DataFrame by total appearances (descending order, that is why ascending=False)
+artistComparison = artistComparison.sort_values(by='total_appearances', ascending=False)
 
-# Sort artists based on total appearances
-artistAnalysis = artistAnalysis.sort_values(by=['playlists', 'charts'], ascending=False)
+# Plotting the comparison of playlists and charts
+plt.figure(figsize=(13, 6)) # Set the figure size
 
-# Select the top 10 artists for visualization
-topArtists = artistAnalysis.nlargest(10, 'playlists') 
-```
+# Set the bar width and positions
+bar_width = 0.36 # Set the width depending on your preferences, mine is 0.36
+index = np.arange(len(artistComparison)) # Position of artist
 
-``` python
-# Set up the bar plot
-plt.figure(figsize=(14, 8))  # Figure size
+# Plot total playlist appearances
+plt.bar(index, artistComparison['total_playlists'], bar_width, label='Playlists', color='#FF69B4', edgecolor='black')
 
-# Set the index for the bar plot
-index = range(len(topArtists))
-
-# Plot total playlists
-plt.bar(index, topArtists['playlists'], width=0.4, label='Playlists', color='#FF69B4', edgecolor='black')
-
-# Plot total charts, offsetting by 0.4 for separation
-plt.bar([i + 0.4 for i in index], topArtists['charts'], width=0.4, label='Charts', color='#FFB6C1', edgecolor='black')
+# Plot total chart appearances, with an offset to appear beside playlists
+plt.bar(index + bar_width, artistComparison['total_charts'], bar_width, label='Charts', color='#FFB6C1', edgecolor='black')
 
 # Adding titles and labels
-plt.title('Comparison of Most Frequently Appearing Artists in Playlists vs Charts')  # Add title
-plt.ylabel('Count')  # Add y-axis label
-plt.xlabel('Artists')  # Add x-axis label
-plt.xticks([i + 0.2 for i in index], topArtists['artist(s)_name'], rotation=90)  # Rotate x-tick labels for better readability
-plt.legend(title='Legend')  # Add a legend to distinguish between playlists and charts
-plt.tight_layout()  # Adjust layout to prevent overlap of elements
-plt.show()  # Display the plot
-```
-<img width="1014" alt="Screenshot 2024-11-03 at 6 46 17 PM" src="https://github.com/user-attachments/assets/5b736c7c-1cb8-45b7-9163-21b46fd77d0d">
+plt.title('Comparison of the Most Frequently Appearing Artists in Playlists vs Charts.') # Add title 
+plt.xlabel('Artists') # Add x-axis label
+plt.ylabel('Count') # Add y-axis label
+plt.xticks(index + bar_width / 2, artistComparison['artist(s)_name'], rotation=45) # Set artist names as x-tick labels, rotation is 45 so that the names of the artist are more readable
+plt.legend(title='Playlist vs Chart') # Add Legend
 
+plt.tight_layout() # Adjust layout
+plt.show() # Show the graph 
+```
+<img width="898" alt="Screenshot 2024-11-04 at 12 18 11 AM" src="https://github.com/user-attachments/assets/fd5bcbec-402b-424c-be58-f78fe87762da">
 
 # References 
 * Camilleri, P., & McKinney, T. (2015, October 22). Plotting a 2D heatmap. Stack Overflow. https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap 
@@ -556,7 +542,7 @@ plt.show()  # Display the plot
 * Shah, N. (2016, February 20). How do I get the row count of a Pandas DataFrame? (P. Mortensen, Ed.). Stack Overflow. https://stackoverflow.com/questions/15943769/how-do-i-get-the-row-count-of-a-pandas-dataframe 
 
 # Author
-<img width="289" alt="Screenshot 2024-11-03 at 2 42 26 AM" src="https://github.com/user-attachments/assets/5304be68-5583-47a4-bc1f-2b28ac3ceea7">
+<img width="289" alt="Screenshot 2024-11-03 at 2 42 26 AM" src="https://github.com/user-attachments/assets/2709523d-81a7-4d41-bb3f-94a4c0fa7372">
 
 ### Ginger Fiona R. Ignacio
 #### 2ECE-B
