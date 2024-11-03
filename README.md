@@ -312,7 +312,8 @@ plt.ylabel('Artists')  # Add y-axis label
 plt.tight_layout()  # Adjust layout to prevent overlap of elements
 plt.show()  # Display the plot
 ```
-<img width="812" alt="Screenshot 2024-11-03 at 7 12 35 PM" src="https://github.com/user-attachments/assets/974873ff-960e-4982-8a9c-ecbf1d9c29dc">
+<img width="789" alt="Screenshot 2024-11-03 at 10 34 12 PM" src="https://github.com/user-attachments/assets/196b1ace-6bfe-429e-b40e-18047f3804f0">
+
 
 ``` python
 # Printed top 5 most frequent artists based on the number of tracks in the dataset
@@ -325,7 +326,8 @@ topArtistsCleaned.columns = ['artist(s)_name', 'track_count']  # Rename the colu
 print("\nTop 5 Most Frequent Artists:")
 print(tabulate(topArtistsCleaned, headers='keys', tablefmt='pretty', showindex=False, stralign='left'))
 ```
-<img width="261" alt="Screenshot 2024-11-03 at 1 35 31 AM" src="https://github.com/user-attachments/assets/a8b6e4cb-6475-418e-aca8-b03a51d739cc">
+<img width="210" alt="Screenshot 2024-11-03 at 10 34 47 PM" src="https://github.com/user-attachments/assets/b0453a02-4b26-48cf-9230-29f5d28037b8">
+
 
 ## Temporal Trends
 * Analyze the trends in the number of tracks released over time. Plot the number of tracks released per year.
