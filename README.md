@@ -371,7 +371,7 @@ plt.xticks(ticks=range(1, 13), labels=monthNames, rotation=25)
 plt.tight_layout()  # Adjust layout to prevent overlap
 plt.show() # Show the plots
 ```
-<img width="1138" alt="Screenshot 2024-11-03 at 2 01 17 AM" src="https://github.com/user-attachments/assets/f4201a30-4d79-45a9-8cc7-22b95065eaff">
+<img width="904" alt="Screenshot 2024-11-04 at 12 41 47 AM" src="https://github.com/user-attachments/assets/007b6283-ec92-4835-b6d2-3b9352d6ba3a">
 
 ### Genre and Music Characteristics
 
@@ -533,13 +533,17 @@ plt.show() # Show the graph
 <img width="898" alt="Screenshot 2024-11-04 at 12 18 11 AM" src="https://github.com/user-attachments/assets/fd5bcbec-402b-424c-be58-f78fe87762da">
 
 # References 
-* Camilleri, P., & McKinney, T. (2015, October 22). Plotting a 2D heatmap. Stack Overflow. https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap 
-* How to create a linear colormap with color defined at specific values with matplotlib? (n.d.). Stack Overflow. https://stackoverflow.com/questions/74731282/how-to-create-a-linear-colormap-with-color-defined-at-specific-values-with-matpl 
-* Ishaan Sharma. (2020, September 11). python matplotlib graphs using csv files, bar, pie, line graph [Video]. YouTube. https://www.youtube.com/watch?v=spALaS5BFX8 
-* Moo, M. (2016, May 26). Encoding Error in Panda read_csv. Stack Overflow. https://stackoverflow.com/questions/30462807/encoding-error-in-panda-read-csv 
-* Peres, G. (2022, July 22). Python Pandas dataframe find missing values. Stack Overflow. https://stackoverflow.com/questions/59694988/python-pandas-dataframe-find-missing-values 
-* Pluta, J. (2021, May 15). How to display pretty tables in terminal with tabulate python package? Stack Overflow. https://stackoverflow.com/questions/67548514/how-to-display-pretty-tables-in-terminal-with-tabulate-python-package 
-* Shah, N. (2016, February 20). How do I get the row count of a Pandas DataFrame? (P. Mortensen, Ed.). Stack Overflow. https://stackoverflow.com/questions/15943769/how-do-i-get-the-row-count-of-a-pandas-dataframe 
+* Camilleri, P., & McKinney, T. (2015, October 22). Plotting a 2D heatmap. Stack Overflow. https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap
+* CodersLegacy. (2023, August 8). MatPlotLib Colormap Tutorial (LinearSegmentedColormap) [Video]. YouTube. https://www.youtube.com/watch?v=k6_LetPGGMQ
+* Coding Informer. (2023, May 6). How to create heatmaps using Matplotlib and Pandas [Video]. YouTube. https://www.youtube.com/watch?v=mflRx2m_-Bs
+* How to create a linear colormap with color defined at specific values with matplotlib? (n.d.). Stack Overflow. https://stackoverflow.com/questions/74731282/how-to-create-a-linear-colormap-with-color-defined-at-specific-values-with-matpl
+* Ishaan Sharma. (2020, September 11). python matplotlib graphs using csv files, bar, pie, line graph [Video]. YouTube. https://www.youtube.com/watch?v=spALaS5BFX8
+* Moo, M. (2016, May 26). Encoding Error in Panda read_csv. Stack Overflow. https://stackoverflow.com/questions/30462807/encoding-error-in-panda-read-csv
+* Peres, G. (2022, July 22). Python Pandas dataframe find missing values. Stack Overflow. https://stackoverflow.com/questions/59694988/python-pandas-dataframe-find-missing-values
+* Pluta, J. (2021, May 15). How to display pretty tables in terminal with tabulate python package? Stack Overflow. https://stackoverflow.com/questions/67548514/how-to-display-pretty-tables-in-terminal-with-tabulate-python-package
+* python pandas groupby() result. (2015, December 30). Stack Overflow. https://stackoverflow.com/questions/17666075/python-pandas-groupby-result
+* Shah, N. (2016, February 20). How do I get the row count of a Pandas DataFrame? (P. Mortensen, Ed.). Stack Overflow. https://stackoverflow.com/questions/15943769/how-do-i-get-the-row-count-of-a-pandas-dataframe
+* The AI & DS Channel. (2021b, September 21). Bar Chart | Bar Graph using python | Bar chart tutorial [Video]. YouTube. https://www.youtube.com/watch?v=9VK8quGFcSE 
 
 # Author
 <img width="289" alt="Screenshot 2024-11-03 at 2 42 26 AM" src="https://github.com/user-attachments/assets/2709523d-81a7-4d41-bb3f-94a4c0fa7372">
