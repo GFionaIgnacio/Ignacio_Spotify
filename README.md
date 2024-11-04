@@ -209,14 +209,14 @@ plt.figure(figsize=(15, 5)) # Set the figure size
 
 # Plotting the distribution of released_year
 plt.subplot(1, 2, 1)  # 1 row, 2 columns, 1st subplot
-plt.hist(df['released_year'], bins=99, color='#FF69B4', edgecolor='black') # Histogram for the released_year
+plt.hist(cleaned['released_year'], bins=99, color='#FF69B4', edgecolor='black') # Histogram for the released_year
 plt.title('Distribution of Released Year') # Add title to the graph
 plt.xlabel('Year') # Add x-axis label
 plt.ylabel('Number of Tracks') # Add y-axis label
 
 # Plotting the distribution of artist_count
 plt.subplot(1, 2, 2) # 1 row, 2 columns, 2nd subplot
-plt.hist(df['artist_count'], bins=8, color='#FFC0CB', edgecolor='black') # Histogram for artist_count
+plt.hist(cleaned['artist_count'], bins=8, color='#FFC0CB', edgecolor='black') # Histogram for artist_count
 plt.title('Distribution of Artist Count') # Add title to the graph
 plt.xlabel('Number of Artists') # Add x-axis label
 plt.ylabel('Number of Tracks') # Add y-axis label
@@ -341,7 +341,7 @@ plt.figure(figsize=(20, 3)) # Set the figure size
 
 # Plotting the distribution of released_year
 plt.subplot(1, 2, 1)  # 1 row, 2 columns, 1st subplot
-plt.hist(df['released_year'], bins=120, color='#FF69B4', edgecolor='black') # Histogram for number of released per year
+plt.hist(cleaned['released_year'], bins=120, color='#FF69B4', edgecolor='black') # Histogram for number of released per year
 plt.title('Number of Tracks Released per Year') # Add title
 plt.xlabel('Year') # Add x-axis label
 plt.ylabel('Number of Tracks') # Add y-axis label
@@ -496,7 +496,7 @@ plt.show()  # Show the pie chart
 
 ``` python
 # Group by 'key' and 'mode' and calculate the average streams
-key_mode_analysis = df.groupby(['key', 'mode'])['streams'].mean().reset_index() 
+key_mode_analysis = cleaned.groupby(['key', 'mode'])['streams'].mean().reset_index() 
 
 # Filter for Major and Minor modes
 key_mode_analysis = key_mode_analysis[key_mode_analysis['mode'].isin(['Major', 'Minor'])]
