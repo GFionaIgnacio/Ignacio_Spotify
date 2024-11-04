@@ -261,7 +261,7 @@ print(f"\nTotal number of outliers in Artist Count: {totalOutliersArtist}") # Di
 
 ``` python
 # Select the 'track_name' and 'streams' columns, then find the top 5 tracks with the highest streams
-topStreamedTracks = df[['track_name', 'streams']].nlargest(5, 'streams')
+topStreamedTracks = cleaned.nlargest(5, 'streams')
 
 # Sort the top tracks in ascending order for correct plotting
 topStreamedTracks = topStreamedTracks.sort_values(by='streams', ascending=True)
@@ -282,17 +282,17 @@ plt.show()  # Display the plot
 ``` python
 # Printed top 5 most streamed tracks
 # Select the 'track_name' and 'streams' columns, then find the top 5 tracks with the highest streams
-topStreamedTracks = df[['track_name', 'streams']].nlargest(5, 'streams')
+tableTopStreamedTracks = cleaned[['track_name', 'streams']].nlargest(5, 'streams')
 
 # Print the top 5 most streamed tracks in a pretty and tabular format
 print("\nTop 5 Most Streamed Tracks:")
-print(tabulate(topStreamedTracks, headers='keys', tablefmt='pretty', showindex=False, stralign='left'))
+print(tabulate(tableTopStreamedTracks, headers='keys', tablefmt='pretty', showindex=False, stralign='left'))
 ```
 <img width="416" alt="Screenshot 2024-11-03 at 7 11 36 PM" src="https://github.com/user-attachments/assets/0af84e33-c7bf-4745-a506-98194a57ed73">
 
 ``` python
 # Group by artist name and count the number of tracks
-artistTrackCount = df['artist(s)_name'].value_counts().reset_index()
+artistTrackCount = cleaned['artist(s)_name'].value_counts().reset_index()
 
 # Rename the columns for clarity
 artistTrackCount.columns = ['artist(s)_name', 'track_count']
@@ -457,6 +457,37 @@ plt.axis('equal')  # Equal aspect ratio. This will ensure the pie chart is circu
 plt.show()  # Show the pie chart
 ```
 <img width="654" alt="Screenshot 2024-11-03 at 5 23 04 PM" src="https://github.com/user-attachments/assets/cbdef72f-47fe-4277-80e3-d30900bad356">
+
+``` python
+# Check the topStreamedTracks by running it again just to be sure that 'in_spotify_playlist', 'in_deezer_playlist', and 'in_apple_playlist' are all present
+topStreamedTracks
+```
+
+``` python
+# Count total tracks for each platform
+topTotalSpotifyTracks = topStreamedTracks['in_spotify_playlists'].sum()  # Sum all tracks in Spotify playlists
+topTotalDeezerTracks = topStreamedTracks['in_deezer_playlists'].sum()    # Sum all tracks in Deezer playlists
+topTotalAppleTracks = topStreamedTracks['in_apple_playlists'].sum()      # Sum all tracks in Apple playlists
+
+# Prepare data for the pie chart
+platform_counts = {
+    'Spotify Playlists': topTotalSpotifyTracks, # Total tracks for Spotify
+    'Deezer Playlists': topTotalDeezerTracks, # Total tracks for Deezer
+    'Apple Music Playlists': topTotalAppleTracks # Total tracks for Apple
+}
+
+# Define shades of choice for the pie chart, mine is pink 
+pink_shades = ['#FFC0CB', '#FF69B4', '#FF1493']  # Light pink, Hot pink, Deep pink
+
+# Create a pie chart
+plt.figure(figsize=(8, 8))  # Set the figure size
+plt.pie(platform_counts.values(), labels=platform_counts.keys(), autopct='%1.1f%%', startangle=140, colors=pink_shades, explode = [0.1, 0, 0], wedgeprops = {'edgecolor':'black', 'linewidth' : 0.5})  # Create the pie chart with percentages
+plt.title('Proportion of Total Tracks on Different Platforms')  # Add title to the pie chart
+plt.legend() # Add legend
+plt.axis('equal')  # Equal aspect ratio. This will ensure the pie chart is circular.
+plt.show()  # Show the pie chart
+```
+<img width="641" alt="Screenshot 2024-11-05 at 2 47 55 AM" src="https://github.com/user-attachments/assets/187fa347-d2e4-47a2-b63b-26f75a0dd847">
 
 ### Advanced Analysis
 
