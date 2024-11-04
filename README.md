@@ -180,6 +180,11 @@ cleaned = df.dropna()
 cleaned
 ```
 
+#### Dataset Dimensions: 
+###### Initially, the dataset had 953 rows and 24 columns. After cleaning, it now contains 813 rows and 24 columns.
+#### Column Data Types and Missing Values: 
+###### Before cleaning, most columns were int64, but streams, in_deezer_playlists, and in_shazam_charts were object data types. These were transformed into float64 for accurate analysis.
+
 ## Basic Descriptive Statistics
 
 * What are the mean, median, and standard deviation of the streams column?
