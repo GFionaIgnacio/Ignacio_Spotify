@@ -179,11 +179,10 @@ df
 cleaned = df.dropna()
 cleaned
 ```
-
 #### Dataset Dimensions: 
-###### Initially, the dataset had 953 rows and 24 columns. After cleaning, it now contains 813 rows and 24 columns.
+``` Initially, the dataset had 953 rows and 24 columns. After cleaning, it now contains 813 rows and 24 columns. ```
 #### Column Data Types and Missing Values: 
-###### Before cleaning, most columns were int64, but streams, in_deezer_playlists, and in_shazam_charts were object data types. These were transformed into float64 for accurate analysis.
+```Before cleaning, most columns were int64, but streams, in_deezer_playlists, and in_shazam_charts were object data types. These were transformed into float64 for accurate analysis.```
 
 ## Basic Descriptive Statistics
 
@@ -254,10 +253,10 @@ print(f"\nTotal number of outliers in Artist Count: {totalOutliersArtist}") # Di
 <img width="371" alt="Screenshot 2024-11-03 at 1 27 10 AM" src="https://github.com/user-attachments/assets/39619527-e8d4-4202-8cfe-545fa5a4033c">
 
 #### Distribution of Released Year
-* The histogram shows a significant peak in tracks released in 2020, indicating a surge in music production during that time compared to previous years.
+``` The histogram shows a significant peak in tracks released in 2020, indicating a surge in music production during that time compared to previous years. ```
 
 #### Distribution of Artist Count
-* Most tracks are by solo artists rather than groups, suggesting that solo acts dominate the market in this dataset.
+``` Most tracks are by solo artists rather than groups, suggesting that solo acts dominate the market in this dataset. ```
 
 ## Top Performers
 
@@ -294,6 +293,9 @@ print("\nTop 5 Most Streamed Tracks:")
 print(tabulate(tableTopStreamedTracks, headers='keys', tablefmt='pretty', showindex=False, stralign='left'))
 ```
 <img width="416" alt="Screenshot 2024-11-03 at 7 11 36 PM" src="https://github.com/user-attachments/assets/0af84e33-c7bf-4745-a506-98194a57ed73">
+
+#### Highest Number of Streams
+``` The track with the highest number of streams is “Shape of You,” which has an impressive 3,562,543,890 streams. It is followed by “Sunflower - Spider-Man: Into the Spider-Verse” with 2,808,096,550 streams, and “One Dance” with 2,713,922,350 streams. The complete list of the top five most streamed tracks includes “STAY (with Justin Bieber)” and “Believer,” with 2,665,343,922 and 2,594,040,133 streams, respectively. ```
 
 ``` python
 # Group by artist name and count the number of tracks
@@ -335,10 +337,8 @@ print(tabulate(topArtistsCleaned, headers='keys', tablefmt='pretty', showindex=F
 ```
 <img width="210" alt="Screenshot 2024-11-03 at 10 34 47 PM" src="https://github.com/user-attachments/assets/b0453a02-4b26-48cf-9230-29f5d28037b8">
 
-#### Highest Number of Streams
-###### The track with the highest number of streams is “Shape of You,” which has an impressive 3,562,543,890 streams. It is followed by “Sunflower - Spider-Man: Into the Spider-Verse” with 2,808,096,550 streams, and “One Dance” with 2,713,922,350 streams. The complete list of the top five most streamed tracks includes “STAY (with Justin Bieber)” and “Believer,” with 2,665,343,922 and 2,594,040,133 streams, respectively.
 #### Top 5 most frequent artists
-###### Taylor Swift leads with 29 tracks, followed by SZA with 17 tracks and Bad Bunny with 16 tracks. The Weeknd has 14 tracks, while Harry Styles rounds out the top five with 12 tracks. These artists are the most represented in the dataset based on the number of their tracks.
+``` Taylor Swift leads with 29 tracks, followed by SZA with 17 tracks and Bad Bunny with 16 tracks. The Weeknd has 14 tracks, while Harry Styles rounds out the top five with 12 tracks. These artists are the most represented in the dataset based on the number of their tracks. ```
 
 ## Temporal Trends
 * Analyze the trends in the number of tracks released over time. Plot the number of tracks released per year.
@@ -361,8 +361,7 @@ plt.show() # Show the plots
 <img width="1019" alt="Screenshot 2024-11-03 at 2 00 36 AM" src="https://github.com/user-attachments/assets/f3e8839f-ff95-49bf-baa6-8622b7683878">
 
 #### Tracks Released Over Time (by Year):
-
-###### The histogram shows the number of track releases per year, with a steady increase over time. This trend indicates a rise in music production, reaching a significant peak in 2023.
+``` The histogram shows the number of track releases per year, with a steady increase over time. This trend indicates a rise in music production, reaching a significant peak in 2023.```
 
 ``` python
 # Analyze the trends in the number of tracks released over time
@@ -388,7 +387,7 @@ plt.show() # Show the plots
 
 #### Tracks Released by Month:
 
-###### The bar chart reveals monthly trends, with January having the highest number of releases, followed by May. These months show noticeably more frequent releases compared to others, suggesting a potential preference for new releases at the start of the year.
+```The bar chart reveals monthly trends, with January having the highest number of releases, followed by May. These months show noticeably more frequent releases compared to others, suggesting a potential preference for new releases at the start of the year.```
 
 ### Genre and Music Characteristics
 
@@ -440,11 +439,11 @@ plt.show()  # Show the heat map
 <img width="457" alt="Screenshot 2024-11-03 at 2 09 11 AM" src="https://github.com/user-attachments/assets/8a4604ef-0543-49da-92f3-fd0ff3e34fd4">
 
 #### Streams and Musical Attributes: 
-###### There’s little to no relationship between streams and attributes like BPM, danceability_%, energy_%, valence_%, and acousticness_%. Among them, danceability_% has the highest, but still weak, influence.
+``` There’s little to no relationship between streams and attributes like BPM, danceability_%, energy_%, valence_%, and acousticness_%. Among them, danceability_% has the highest, but still weak, influence.```
 #### Attribute Correlations:
-###### Danceability_% and Energy_% have a weak positive correlation (0.16).
-###### Danceability_% and Valence_% are somewhat related (0.39), meaning more danceable tracks tend to be more positive.
-###### Energy_% and Acousticness_% have a moderate negative correlation (-0.55), showing that energetic tracks are less acoustic.
+```Danceability_% and Energy_% have a weak positive correlation (0.16). ```
+``` Danceability_% and Valence_% are somewhat related (0.39), meaning more danceable tracks tend to be more positive. ```
+``` Energy_% and Acousticness_% have a moderate negative correlation (-0.55), showing that energetic tracks are less acoustic. ```
 
 ## Platform Popularity
 * How do the numbers of tracks in spotify_playlists, deezer_playlist, and apple_playlists compare? Which platform seems to favor the most popular tracks?
@@ -480,8 +479,9 @@ plt.axis('equal')  # Equal aspect ratio. This will ensure the pie chart is circu
 plt.show()  # Show the pie chart
 ```
 <img width="654" alt="Screenshot 2024-11-03 at 5 23 04 PM" src="https://github.com/user-attachments/assets/cbdef72f-47fe-4277-80e3-d30900bad356">
+
 #### Comparison of Track Numbers in Playlists: 
-###### The pie chart shows that Spotify playlists have the most tracks, indicating that it favors popular music more than Deezer and Apple Music.
+``` The pie chart shows that Spotify playlists have the most tracks, indicating that it favors popular music more than Deezer and Apple Music. ```
 
 ``` python
 # Check the topStreamedTracks by running it again just to be sure that 'in_spotify_playlist', 'in_deezer_playlist', and 'in_apple_playlist' are all present
@@ -515,7 +515,7 @@ plt.show()  # Show the pie chart
 <img width="641" alt="Screenshot 2024-11-05 at 2 47 55 AM" src="https://github.com/user-attachments/assets/187fa347-d2e4-47a2-b63b-26f75a0dd847">
 
 #### Platform Popularity: 
-###### Spotify is the leading platform for popular tracks, followed by Deezer and Apple Music.
+``` Spotify is the leading platform for popular tracks, followed by Deezer and Apple Music. ```
 
 ### Advanced Analysis
 
@@ -550,7 +550,7 @@ plt.show()  # Show the graph
 <img width="572" alt="Screenshot 2024-11-03 at 5 47 44 PM" src="https://github.com/user-attachments/assets/3a2ca6e4-8433-454b-87cb-adf221245541">
 
 #### Patterns in Streams by Key and Mode: 
-###### Tracks in the key of C# have the highest total streams for both Major and Minor modes. This suggests that either there are more tracks in C# or that tracks in this key are particularly appealing to listeners, resulting in higher streaming numbers.
+``` Tracks in the key of C# have the highest total streams for both Major and Minor modes. This suggests that either there are more tracks in C# or that tracks in this key are particularly appealing to listeners, resulting in higher streaming numbers. ```
 
 ``` python
 # Calculate total playlists and charts, using .loc[] to avoid SettingWithCopyWarning
@@ -614,8 +614,9 @@ plt.tight_layout()  # Adjust layout
 plt.show()  # Show the graph
 ```
 <img width="898" alt="Screenshot 2024-11-04 at 12 18 11 AM" src="https://github.com/user-attachments/assets/fd5bcbec-402b-424c-be58-f78fe87762da">
+
 #### Artist and Genre Analysis: 
-###### The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts.
+``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts. ```
 
 # References 
 * Camilleri, P., & McKinney, T. (2015, October 22). Plotting a 2D heatmap. Stack Overflow. https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap
