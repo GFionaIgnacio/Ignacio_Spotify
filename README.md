@@ -179,9 +179,9 @@ df
 cleaned = df.dropna()
 cleaned
 ```
-#### Dataset Dimensions: 
+#### Dataset Dimensions
 ``` Initially, the dataset had 953 rows and 24 columns. After cleaning, it now contains 813 rows and 24 columns. ```
-#### Column Data Types and Missing Values: 
+#### Column Data Types and Missing Values
 ```Before cleaning, most columns were int64, but streams, in_deezer_playlists, and in_shazam_charts were object data types. These were transformed into float64 for accurate analysis.```
 
 ## Basic Descriptive Statistics
@@ -252,11 +252,17 @@ print(f"\nTotal number of outliers in Artist Count: {totalOutliersArtist}") # Di
 ```
 <img width="371" alt="Screenshot 2024-11-03 at 1 27 10 AM" src="https://github.com/user-attachments/assets/39619527-e8d4-4202-8cfe-545fa5a4033c">
 
+#### Mean, Median, and Standard Deviation of Streams
+```
+Mean: 468922407.2521525
+Median: 263453310
+Standard Deviation: 523981505.32150424
+```
 #### Distribution of Released Year
-``` The histogram shows a significant peak in tracks released in 2020, indicating a surge in music production during that time compared to previous years. ```
+``` The histogram shows a significant peak in tracks released in 2020 onwards, indicating a surge in music production during that time compared to previous years. ```
 
 #### Distribution of Artist Count
-``` Most tracks are by solo artists rather than groups, suggesting that solo acts dominate the market in this dataset. ```
+``` Given that the dataset reflects streams from 2023, it’s expected that the majority of tracks were released post-2020. Additionally, tracks featuring a single artist are more prevalent, likely due to the significant representation of indie artists in the data. The analysis identified 180 outliers in the released_year column and 24 in the artist_count column.```
 
 ## Top Performers
 
@@ -360,7 +366,7 @@ plt.show() # Show the plots
 ```
 <img width="1019" alt="Screenshot 2024-11-03 at 2 00 36 AM" src="https://github.com/user-attachments/assets/f3e8839f-ff95-49bf-baa6-8622b7683878">
 
-#### Tracks Released Over Time (by Year):
+#### Tracks Released Over Time (by Year)
 ``` The histogram shows the number of track releases per year, with a steady increase over time. This trend indicates a rise in music production, reaching a significant peak in 2023.```
 
 ``` python
@@ -385,7 +391,7 @@ plt.show() # Show the plots
 ```
 <img width="904" alt="Screenshot 2024-11-04 at 12 41 47 AM" src="https://github.com/user-attachments/assets/007b6283-ec92-4835-b6d2-3b9352d6ba3a">
 
-#### Tracks Released by Month:
+#### Tracks Released by Month
 
 ```The bar chart reveals monthly trends, with January having the highest number of releases, followed by May. These months show noticeably more frequent releases compared to others, suggesting a potential preference for new releases at the start of the year.```
 
@@ -438,9 +444,9 @@ plt.show()  # Show the heat map
 ```
 <img width="457" alt="Screenshot 2024-11-03 at 2 09 11 AM" src="https://github.com/user-attachments/assets/8a4604ef-0543-49da-92f3-fd0ff3e34fd4">
 
-#### Streams and Musical Attributes: 
+#### Streams and Musical Attributes 
 ``` There’s little to no relationship between streams and attributes like BPM, danceability_%, energy_%, valence_%, and acousticness_%. Among them, danceability_% has the highest, but still weak, influence.```
-#### Attribute Correlations:
+#### Attribute Correlations
 ```Danceability_% and Energy_% have a weak positive correlation (0.16). ```
 ``` Danceability_% and Valence_% are somewhat related (0.39), meaning more danceable tracks tend to be more positive. ```
 ``` Energy_% and Acousticness_% have a moderate negative correlation (-0.55), showing that energetic tracks are less acoustic. ```
@@ -480,7 +486,7 @@ plt.show()  # Show the pie chart
 ```
 <img width="654" alt="Screenshot 2024-11-03 at 5 23 04 PM" src="https://github.com/user-attachments/assets/cbdef72f-47fe-4277-80e3-d30900bad356">
 
-#### Comparison of Track Numbers in Playlists: 
+#### Comparison of Track Numbers in Playlists
 ``` The pie chart shows that Spotify playlists have the most tracks, indicating that it favors popular music more than Deezer and Apple Music. ```
 
 ``` python
@@ -514,7 +520,7 @@ plt.show()  # Show the pie chart
 ```
 <img width="641" alt="Screenshot 2024-11-05 at 2 47 55 AM" src="https://github.com/user-attachments/assets/187fa347-d2e4-47a2-b63b-26f75a0dd847">
 
-#### Platform Popularity: 
+#### Platform Popularity
 ``` Spotify is the leading platform for popular tracks, followed by Deezer and Apple Music. ```
 
 ### Advanced Analysis
@@ -549,7 +555,7 @@ plt.show()  # Show the graph
 ```
 <img width="572" alt="Screenshot 2024-11-03 at 5 47 44 PM" src="https://github.com/user-attachments/assets/3a2ca6e4-8433-454b-87cb-adf221245541">
 
-#### Patterns in Streams by Key and Mode: 
+#### Patterns in Streams by Key and Mode
 ``` Tracks in the key of C# have the highest total streams for both Major and Minor modes. This suggests that either there are more tracks in C# or that tracks in this key are particularly appealing to listeners, resulting in higher streaming numbers. ```
 
 ``` python
@@ -615,7 +621,7 @@ plt.show()  # Show the graph
 ```
 <img width="898" alt="Screenshot 2024-11-04 at 12 18 11 AM" src="https://github.com/user-attachments/assets/fd5bcbec-402b-424c-be58-f78fe87762da">
 
-#### Artist and Genre Analysis: 
+#### Artist and Genre Analysis
 ``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts. ```
 
 # References 
