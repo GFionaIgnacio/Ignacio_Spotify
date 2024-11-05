@@ -86,31 +86,42 @@ from matplotlib.colors import LinearSegmentedColormap
 df = pd.read_csv('spotify-2023.csv', encoding='latin1')
 df
 ```
+<p align="center">
 <img width="967" alt="1" src="https://github.com/user-attachments/assets/860973d1-5d1b-4e0d-a96c-0b6a17583277">
+</p>
 
 ``` python
 # Display the first few rows of the dataset using .head()
 df.head()
 ```
+<p align="center">
 <img width="978" alt="2" src="https://github.com/user-attachments/assets/e4cc42b4-c1b3-49eb-b0b1-03e3028a2c9b">
+</p>
 
 ``` python
 # Check the size of the dataset
 df.size
 ```
+<p align="center">
 <img width="116" alt="Screenshot 2024-11-02 at 11 16 58 PM" src="https://github.com/user-attachments/assets/b3bf43bf-8f03-4b16-8a0b-e432c4799f15">
+</p>
 
 ``` python
 # Check the shape of the dataset
 df.shape
 ```
+<p align="center">
 <img width="165" alt="Screenshot 2024-11-02 at 11 17 41 PM" src="https://github.com/user-attachments/assets/bb0cf5d6-af9a-4b20-a08a-f449ee612f27">
+</p>
+
 
 ``` python
 # Check the data types of the dataset in each column 
 df.dtypes
 ```
+<p align="center">
 <img width="384" alt="Screenshot 2024-11-02 at 11 19 32 PM" src="https://github.com/user-attachments/assets/9ab37272-910d-41e4-9b06-73b5eb549548">
+</p>
 
 ```python
 # Specify the columns that needs to be cleaned. Since streams, deezer_playlists, and shazam-_charts are all objects, we have to transform them into float by omitting the comma
@@ -125,7 +136,9 @@ for col in columns_to_clean:
 # Count missing values in each column
 df.isnull().sum()
 ```
+<p align="center">
 <img width="346" alt="Screenshot 2024-11-02 at 11 28 33 PM" src="https://github.com/user-attachments/assets/b241fea7-1a37-4207-8d42-91160eb5df38">
+</p>
 
 ``` python
 # Clean and convert streams columns into numeric type (float)
@@ -149,13 +162,17 @@ df.drop_duplicates(subset=['track_name', 'artist(s)_name'], inplace=True)
 df.dropna()
 df
 ```
+<p align="center">
 <img width="969" alt="3" src="https://github.com/user-attachments/assets/33d3c251-a6e3-4183-9bdc-93d3a5b04004">
+</p>
 
 ``` python
 # Count missing values in each column
 df.isnull().sum()
 ```
+<p align="center">
 <img width="351" alt="Screenshot 2024-11-02 at 11 38 32 PM" src="https://github.com/user-attachments/assets/24863fd7-7902-461e-9dbb-4ecedbcbe36c">
+</p>p
 
 ``` python
 # Reset index. So instead of index 0 to 952, we will have 0 to 812. 
@@ -171,8 +188,10 @@ print("Final column names:", df.columns)
 print("\nFinal dataset shape:", df.shape)
 df
 ```
+<p align="center">
 <img width="743" alt="Screenshot 2024-11-02 at 11 48 31 PM" src="https://github.com/user-attachments/assets/c486207a-434d-44b9-9e50-57f6318389cc">
 <img width="945" alt="Screenshot 2024-11-02 at 11 53 03 PM" src="https://github.com/user-attachments/assets/3991b688-4eac-40d0-991e-e31e3fe6751a">
+</p>
 
 ``` python
 # Assigned the result to new variable, cleaned
@@ -193,7 +212,9 @@ cleaned
 # Display the summary of statistics like mean, median, mode, std, and etc. 
 cleaned.describe()
 ```
+<p align="center">
 <img width="1353" alt="5" src="https://github.com/user-attachments/assets/48a99065-b75a-42e0-85ae-ca01deb58145">
+</p>
 
 ``` python
 # Mean, Median, and Standard Deviation of the 'STREAMS' column
@@ -205,7 +226,9 @@ print(f"Mean of streams: {meanStreams}") # Print the mean of the streams
 print(f"Median of streams: {medianStreams}") # Print the median of the streams
 print(f"Standard Deviation of streams: {stdStreams}") # Print the standard deviation of the streams
 ```
+<p align="center">
 <img width="837" alt="Screenshot 2024-11-03 at 1 25 38 AM" src="https://github.com/user-attachments/assets/d548cace-487e-4477-a9f3-b48aff0d577f">
+</p>
 
 ``` python
 # Distribution of 'released_year' and 'artist_count'
@@ -229,7 +252,9 @@ plt.ylabel('Number of Tracks') # Add y-axis label
 plt.tight_layout() # Adjust layout to prevent overlap
 plt.show() # Show the plots
 ```
-<img width="1118" alt="Screenshot 2024-11-03 at 1 26 38 AM" src="https://github.com/user-attachments/assets/9afc9d4a-da2c-4bbb-9230-ecee4dee27d5">
+<p align="center">
+    <img width="1118" alt="Screenshot 2024-11-03 at 1 26 38 AM" src="https://github.com/user-attachments/assets/9afc9d4a-da2c-4bbb-9230-ecee4dee27d5">
+</p>
 
 ``` python
 # Function to identify outliers using the IQR (Interquartile Range) method
@@ -250,7 +275,9 @@ print(f"\nTotal number of outliers in Released Year: {totalOutliersYear}") # Dis
 outliersArtistCount, totalOutliersArtist, q1Artist, q3Artist, iqrArtist = identifyOutliersIqr(cleaned['artist_count'])
 print(f"\nTotal number of outliers in Artist Count: {totalOutliersArtist}") # Display total outliers for artist_count
 ```
-<img width="371" alt="Screenshot 2024-11-03 at 1 27 10 AM" src="https://github.com/user-attachments/assets/39619527-e8d4-4202-8cfe-545fa5a4033c">
+<p align="center">
+    <img width="371" alt="Screenshot 2024-11-03 at 1 27 10 AM" src="https://github.com/user-attachments/assets/39619527-e8d4-4202-8cfe-545fa5a4033c">
+</p>
 
 #### Mean, Median, and Standard Deviation of Streams
 ```
@@ -287,7 +314,9 @@ plt.ylabel('Tracks')  # Add y-axis label
 plt.tight_layout()  # Adjust layout to prevent overlap of elements
 plt.show()  # Display the plot
 ```
+<p align="center">
 <img width="834" alt="Screenshot 2024-11-03 at 7 10 53 PM" src="https://github.com/user-attachments/assets/26c8ccfe-f3a1-4b1b-812b-c23c92cab612">
+</p>
 
 ``` python
 # Printed top 5 most streamed tracks
@@ -298,7 +327,9 @@ tableTopStreamedTracks = cleaned[['track_name', 'streams']].nlargest(5, 'streams
 print("\nTop 5 Most Streamed Tracks:")
 print(tabulate(tableTopStreamedTracks, headers='keys', tablefmt='pretty', showindex=False, stralign='left'))
 ```
+<p align="center">
 <img width="416" alt="Screenshot 2024-11-03 at 7 11 36 PM" src="https://github.com/user-attachments/assets/0af84e33-c7bf-4745-a506-98194a57ed73">
+</p>
 
 #### Highest Number of Streams
 ``` The track with the highest number of streams is “Shape of You,” which has an impressive 3,562,543,890 streams. It is followed by “Sunflower - Spider-Man: Into the Spider-Verse” with 2,808,096,550 streams, and “One Dance” with 2,713,922,350 streams. The complete list of the top five most streamed tracks includes “STAY (with Justin Bieber)” and “Believer,” with 2,665,343,922 and 2,594,040,133 streams, respectively. ```
@@ -327,7 +358,9 @@ plt.ylabel('Artists')  # Add y-axis label
 plt.tight_layout()  # Adjust layout to prevent overlap of elements
 plt.show()  # Display the plot
 ```
+<p align="center">
 <img width="789" alt="Screenshot 2024-11-03 at 10 34 12 PM" src="https://github.com/user-attachments/assets/196b1ace-6bfe-429e-b40e-18047f3804f0">
+</p>
 
 
 ``` python
@@ -341,7 +374,9 @@ topArtistsCleaned.columns = ['artist(s)_name', 'track_count']  # Rename the colu
 print("\nTop 5 Most Frequent Artists:")
 print(tabulate(topArtistsCleaned, headers='keys', tablefmt='pretty', showindex=False, stralign='left'))
 ```
+<p align="center">
 <img width="210" alt="Screenshot 2024-11-03 at 10 34 47 PM" src="https://github.com/user-attachments/assets/b0453a02-4b26-48cf-9230-29f5d28037b8">
+</p>
 
 #### Top 5 most frequent artists
 ``` Taylor Swift leads with 29 tracks, followed by SZA with 17 tracks and Bad Bunny with 16 tracks. The Weeknd has 14 tracks, while Harry Styles rounds out the top five with 12 tracks. These artists are the most represented in the dataset based on the number of their tracks. ```
@@ -364,7 +399,9 @@ plt.ylabel('Number of Tracks') # Add y-axis label
 plt.tight_layout() # Adjust layout to prevent overlap
 plt.show() # Show the plots
 ```
+<p align="center">
 <img width="1019" alt="Screenshot 2024-11-03 at 2 00 36 AM" src="https://github.com/user-attachments/assets/f3e8839f-ff95-49bf-baa6-8622b7683878">
+</p>
 
 #### Tracks Released Over Time (by Year)
 ``` The histogram shows the number of track releases per year, with a steady increase over time. This trend indicates a rise in music production, reaching a significant peak in 2023.```
@@ -389,7 +426,9 @@ plt.xticks(ticks=range(1, 13), labels=monthNames, rotation=25)
 plt.tight_layout()  # Adjust layout to prevent overlap
 plt.show() # Show the plots
 ```
+<p align="center">
 <img width="904" alt="Screenshot 2024-11-04 at 12 41 47 AM" src="https://github.com/user-attachments/assets/007b6283-ec92-4835-b6d2-3b9352d6ba3a">
+</p>
 
 #### Tracks Released by Month
 
@@ -442,7 +481,9 @@ plt.figtext(0.5, -0.05, "\n".join(correlation_sentences), ha='center', va='top',
 plt.tight_layout()  # Adjust the layout to make room for the text
 plt.show()  # Show the heat map
 ```
+<p align="center">
 <img width="457" alt="Screenshot 2024-11-03 at 2 09 11 AM" src="https://github.com/user-attachments/assets/8a4604ef-0543-49da-92f3-fd0ff3e34fd4">
+</p>
 
 #### Streams and Musical Attributes 
 ``` There’s little to no relationship between streams and attributes like BPM, danceability_%, energy_%, valence_%, and acousticness_%. Among them, danceability_% has the highest, but still weak, influence.```
@@ -484,7 +525,9 @@ plt.legend() # Add legend
 plt.axis('equal')  # Equal aspect ratio. This will ensure the pie chart is circular.
 plt.show()  # Show the pie chart
 ```
+<p align="center">
 <img width="654" alt="Screenshot 2024-11-03 at 5 23 04 PM" src="https://github.com/user-attachments/assets/cbdef72f-47fe-4277-80e3-d30900bad356">
+</p>
 
 #### Comparison of Track Numbers in Playlists
 ``` The pie chart shows that Spotify playlists have the most tracks, indicating that it favors popular music more than Deezer and Apple Music. ```
@@ -518,7 +561,9 @@ plt.legend() # Add legend
 plt.axis('equal')  # Equal aspect ratio. This will ensure the pie chart is circular.
 plt.show()  # Show the pie chart
 ```
+<p align="center">
 <img width="641" alt="Screenshot 2024-11-05 at 2 47 55 AM" src="https://github.com/user-attachments/assets/187fa347-d2e4-47a2-b63b-26f75a0dd847">
+</p>
 
 #### Platform Popularity
 ``` Spotify is the leading platform for popular tracks, followed by Deezer and Apple Music. ```
@@ -553,7 +598,9 @@ plt.legend(title='Mode')  # Add a legend for Major and Minor
 plt.tight_layout()  # Adjust layout to prevent overlap of elements
 plt.show()  # Show the graph
 ```
+<p align="center">
 <img width="572" alt="Screenshot 2024-11-03 at 5 47 44 PM" src="https://github.com/user-attachments/assets/3a2ca6e4-8433-454b-87cb-adf221245541">
+</p>
 
 #### Patterns in Streams by Key and Mode
 ``` Tracks in the key of C# have the highest total streams for both Major and Minor modes. This suggests that either there are more tracks in C# or that tracks in this key are particularly appealing to listeners, resulting in higher streaming numbers. ```
@@ -619,7 +666,9 @@ plt.legend(title='Playlist vs Chart')  # Add Legend
 plt.tight_layout()  # Adjust layout
 plt.show()  # Show the graph
 ```
+<p align="center">
 <img width="898" alt="Screenshot 2024-11-04 at 12 18 11 AM" src="https://github.com/user-attachments/assets/fd5bcbec-402b-424c-be58-f78fe87762da">
+</p>
 
 #### Artist and Genre Analysis
 ``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts. ```
@@ -637,11 +686,21 @@ plt.show()  # Show the graph
 * Shah, N. (2016, February 20). How do I get the row count of a Pandas DataFrame? (P. Mortensen, Ed.). Stack Overflow. https://stackoverflow.com/questions/15943769/how-do-i-get-the-row-count-of-a-pandas-dataframe
 * The AI & DS Channel. (2021b, September 21). Bar Chart | Bar Graph using python | Bar chart tutorial [Video]. YouTube. https://www.youtube.com/watch?v=9VK8quGFcSE 
 
-# Author
-<img width="289" alt="Screenshot 2024-11-03 at 2 42 26 AM" src="https://github.com/user-attachments/assets/2709523d-81a7-4d41-bb3f-94a4c0fa7372">
+<h1 align="center">
+    Author
+</h1>
 
-### Ginger Fiona R. Ignacio
-#### 2ECE-B
+<p align="center">
+    <img width="289" alt="Screenshot 2024-11-03 at 2 42 26 AM" src="https://github.com/user-attachments/assets/2709523d-81a7-4d41-bb3f-94a4c0fa7372">
+</p>
+
+<h2 align="center">
+    Ginger Fiona R. Ignacio
+</h2>
+
+<h3 align="center">
+    2ECE-B
+</h3>
 
 
 
