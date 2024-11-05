@@ -137,7 +137,7 @@ for col in columns_to_clean:
 df.isnull().sum()
 ```
 <p align="center">
-<img width="346" alt="Screenshot 2024-11-02 at 11 28 33 PM" src="https://github.com/user-attachments/assets/b241fea7-1a37-4207-8d42-91160eb5df38">
+    <img width="346" alt="Screenshot 2024-11-02 at 11 28 33 PM" src="https://github.com/user-attachments/assets/b241fea7-1a37-4207-8d42-91160eb5df38">
 </p>
 
 ``` python
