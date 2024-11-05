@@ -172,7 +172,7 @@ df.isnull().sum()
 ```
 <p align="center">
 <img width="351" alt="Screenshot 2024-11-02 at 11 38 32 PM" src="https://github.com/user-attachments/assets/24863fd7-7902-461e-9dbb-4ecedbcbe36c">
-</p>p
+</p>
 
 ``` python
 # Reset index. So instead of index 0 to 952, we will have 0 to 812. 
