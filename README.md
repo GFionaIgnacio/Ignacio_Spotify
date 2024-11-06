@@ -673,6 +673,10 @@ plt.show()  # Show the graph
 #### Artist and Genre Analysis
 ``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts. ```
 
+# Insights (WALA PA OMGG WAIT POO)
+
+# Recommendation (WALA PA OMGG WAIT POO)
+
 # References 
 * Camilleri, P., & McKinney, T. (2015, October 22). Plotting a 2D heatmap. Stack Overflow. https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap
 * CodersLegacy. (2023, August 8). MatPlotLib Colormap Tutorial (LinearSegmentedColormap) [Video]. YouTube. https://www.youtube.com/watch?v=k6_LetPGGMQ
