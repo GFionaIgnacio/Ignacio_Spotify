@@ -674,8 +674,36 @@ plt.show()  # Show the graph
 ``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts. ```
 
 # Insights (WALA PA OMGG WAIT POO)
+#### Track Popularity and Streaming Patterns
+###### Top Streamed Tracks
+``` In the top 5 most streamed tracks, we can identify which songs have garnered the highest engagement, which is “Shape of You” by Ed Sheeran,  reaffirming its long-standing popularity across platforms.```
 
-# Recommendation (WALA PA OMGG WAIT POO)
+###### Stream Distribution
+```The mean, median, and standard deviation of streams highlight the central tendency and variability in streaming numbers. The standard deviation of streams is significantly high, which is 523,981,505, indicating that a few tracks dominate the streaming numbers, while others perform relatively lower.```
+
+###### Outliers in Tracks
+```There are 180 outliers in the released year, indicating that some tracks have significantly higher stream counts compared to others released in the same year. Some of the possible causes for these are the (1) holidays such as Christmas, (2) another reason if the artist is a well-known artist like Taylor Swift, (3) lastly if it got viral, it can be via social media like Tiktok, making an outlier.```
+
+#### Artist Trends and Popularity
+###### Top Artists
+```Taylor Swift is the most frequent artist in the dataset, showcasing a strong presence in the Spotify 2023. Her songs consistently perform well, showing that artist reputation plays a key role in streaming success.```
+###### Solo Artists
+```Based on the dataset, it can be seen that solo artists are the most dominant, this suggests that the crowd likes listening to the individual performers rather than in a band. Actually, I even prefer listening to solo artists like Harry Styles, The Weeknd, and Niki. ```
+
+#### Time Trends in Track Releases
+###### Tracks Released Over Time
+```The graph shows a significant increase in track releases in 2022, indicating a surge in post-pandemic demand.```
+###### Monthly Track Trends
+```May stands out as the peak month for releases, likely due to the approach of summer, while January follows as listeners seek fresh starts in the new year. Recognizing these patterns helps track industry activity and suggests intentional timing to align with high listener engagement.```
+
+#### Correlation of Musical Attributes
+```The heat map illustrates key correlations: high danceability and energy are linked with popular club tracks, positive valence (mood) correlates with track popularity, and BPM aligns with listener-preferred tempos. This analysis of correlations provides insights into trends associated with successful tracks. Hence, analyzing the correlation is indeed crucial as these can help identify trends in musical features that are associated with more successful tracks in the future.```
+
+#### Platform Preferences
+```As seen in the pie chart, Spotify leads in platform popularity, followed by Deezer and Apple Music. This trend holds for both the total number of tracks across platforms and the comparison of track numbers in playlists. Since Spotify dominates the most, it suggests there are larger users using this app and artists may prioritize releasing music and promotions in Spotify.```
+
+#### Mode and Key Analysis
+`In nearly all of the keys, the major dominates, with the minor scale only dominating twice (key B and key C#). major keys may have a more upbeat, positive sound, while tracks in minor keys might have a melancholic or serious tone. Hence, this suggests that major keys are more likely to appeal to a wider audience as it gives a lively and positive track to the public.`
 
 # References 
 * Camilleri, P., & McKinney, T. (2015, October 22). Plotting a 2D heatmap. Stack Overflow. https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap
