@@ -671,9 +671,15 @@ plt.show()  # Show the graph
 </p>
 
 #### Artist and Genre Analysis
-``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts. ```
+``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts.```
 
 # Insights
+#### Loading the CSV File: 
+```As seen, I use encoding='latin1' in my code when loading the CSV file. Without it, the file cannot be read due to non-ASCII characters not being supported by the default encoding. To resolve this issue, options like encoding='latin1' or encoding='cp1252' can be used. When working with datasets that may contain special characters, it’s important to specify the correct encoding to prevent loading issues.```
+
+#### Data Cleaning: 
+```By checking df.dtypes, we can see that in_deezer_playlist, in_shazam_charts, and streams are treated as objects, despite appearing as integers in the CSV file. To fix this, we need to convert them into floats. For streams, we can use pd.to_numeric() and remove any commas. For in_deezer_playlist and in_shazam_charts, we should also remove the commas and convert them to floats. These steps will ensure the data is in the correct format for accurate analysis. Additionally, to remove any potential duplicates in track_name and artist_name, we can use .drop_duplicates(), which will provide a more accurate result.```
+
 #### Track Popularity and Streaming Patterns
 ###### Top Streamed Tracks
 ``` In the top 5 most streamed tracks, we can identify which songs have garnered the highest engagement, which is “Shape of You” by Ed Sheeran,  reaffirming its long-standing popularity across platforms.```
