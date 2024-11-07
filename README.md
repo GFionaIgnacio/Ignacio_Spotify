@@ -432,7 +432,7 @@ plt.show() # Show the plots
 
 #### Tracks Released by Month
 
-```The bar chart reveals monthly trends, with January having the highest number of releases, followed by May. These months show noticeably more frequent releases compared to others, suggesting a potential preference for new releases at the start of the year.```
+```The bar chart reveals monthly trends, with May having the highest number of releases, followed by January. These months show noticeably more frequent releases compared to others, suggesting a potential preference for new releases at the start of the year.```
 
 ### Genre and Music Characteristics
 
