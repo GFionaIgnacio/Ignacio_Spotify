@@ -673,7 +673,7 @@ plt.show()  # Show the graph
 #### Artist and Genre Analysis
 ``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts. ```
 
-# Insights (WALA PA OMGG WAIT POO)
+# Insights
 #### Track Popularity and Streaming Patterns
 ###### Top Streamed Tracks
 ``` In the top 5 most streamed tracks, we can identify which songs have garnered the highest engagement, which is “Shape of You” by Ed Sheeran,  reaffirming its long-standing popularity across platforms.```
