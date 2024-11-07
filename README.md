@@ -5,38 +5,62 @@
 ##### This repository provides a Jupyter Notebook performing exploratory data analysis (EDA) on a Spotify dataset of the most streamed songs in 2023. The objective is to uncover patterns, visualize trends, and interpret relationships between different song attributes and their popularity (measured by streams).
 
 ## Libraries Used
-##### numpy
-##### pandas
-##### matplotlib
-##### tabulate
-##### matplotlib.colors
+##### 1. Numpy: 
+###### For numerical operations and calculations, especially for statistics.
+``` python
+import numpy as np
+```
+
+##### 2. Pandas: 
+###### For data manipulation and cleaning.
+``` python
+import pandas as pd
+```
+
+##### 3. Matplotlib: 
+###### For data visualization, creating charts and plots.
+``` python
+import matplotlib.pyplot as plt
+```
+
+##### 4. Tabulate: 
+###### For generating well-structured tables in output.
+``` python
+from tabulate import tabulate
+```
+
+##### 5. Matplotlib.colors: 
+###### For handling colors in Matplotlib visualizations.
+``` python
+import matplotlib.colors as mcolors
+```
 
 ## Dataset
 ##### The dataset, stored as spotify-2023.csv and sourced from Kaggle, includes detailed information about various songs, such as:
-* track_name: Title of the track
-* artist(s)_name: Artist(s) name(s)
-* artist_count: Number of contributing artists
-* released_year: Release year
-* released_month: Release month
-* released_day: Release day
-* in_spotify_playlists: Number of Spotify playlists featuring the track
-* in_spotify_charts: Chart position on Spotify
-* streams: Number of Spotify streams
-* in_apple_playlists: Number of Apple Music playlists featuring the track
-* in_apple_charts: Chart position on Apple Music
-* in_deezer_playlists: Number of Deezer playlists featuring the track
-* in_deezer_charts: Chart position on Deezer
-* in_shazam_charts: Chart position on Shazam
-* bpm: Beats per minute
-* key: Key of the song
-* mode: Song mode (Major or Minor)
-* danceability_%: Danceability score
-* valence_%: Valence score (positivity level)
-* energy_%: Energy score
-* acousticness_%: Acousticness score
-* instrumentalness_%: Instrumentalness score
-* liveness_%: Liveness score
-* speechiness_%: Speechiness score
+* **_track_name:_** Title of the track
+* **_artist(s)_name:_** Artist(s) name(s)
+* **_artist_count:_** Number of contributing artists
+* **_released_year:_** Release year
+* **_released_month:_** Release month
+* _**released_day:**_ Release day
+* **_in_spotify_playlists:_** Number of Spotify playlists featuring the track
+* **_in_spotify_charts:_** Chart position on Spotify
+* **_streams:_** Number of Spotify streams
+* **_in_apple_playlists:_** Number of Apple Music playlists featuring the track
+* **_in_apple_charts:_** Chart position on Apple Music
+* **_in_deezer_playlists:_** Number of Deezer playlists featuring the track
+* **_in_deezer_charts:_** Chart position on Deezer
+* **_in_shazam_charts:_** Chart position on Shazam
+* **_bpm:_** Beats per minute
+* **_key:_** Key of the song
+* **_mode:_** Song mode (Major or Minor)
+* **_danceability_%:_** Danceability score
+* **_valence_%:_** Valence score (positivity level)
+* **_energy_%:_** Energy score
+* **_acousticness_%:_** Acousticness score
+* **_instrumentalness_%:_** Instrumentalness score
+* **_liveness_%:_** Liveness score
+* **_speechiness_%:_** Speechiness score
 
 ## Guide Questions
 #### Overview of Dataset
