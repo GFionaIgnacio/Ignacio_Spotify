@@ -2,7 +2,7 @@
 ![image](https://github.com/user-attachments/assets/1f182d92-64ab-4025-9d4d-1fd05256a86b)
 
 ## Overview
-##### This repository provides a Jupyter Notebook performing exploratory data analysis (EDA) on a Spotify dataset of the most streamed songs in 2023. The objective is to uncover patterns, visualize trends, and interpret relationships between different song attributes and their popularity (measured by streams).
+##### This repository provides a Jupyter Notebook performing exploratory data analysis (EDA) on a Spotify dataset of the most streamed songs in 2023. The objective is to uncover patterns, visualize trends, and interpret relationships between different song attributes and their popularity.
 
 ## Libraries Used
 ##### 1. Numpy: 
@@ -550,7 +550,7 @@ plt.axis('equal')  # Equal aspect ratio. This will ensure the pie chart is circu
 plt.show()  # Show the pie chart
 ```
 <p align="center">
-<img width="654" alt="Screenshot 2024-11-03 at 5 23 04 PM" src="https://github.com/user-attachments/assets/cbdef72f-47fe-4277-80e3-d30900bad356">
+<img width="595" alt="Screenshot 2024-11-07 at 2 19 48 PM" src="https://github.com/user-attachments/assets/ed09054e-e490-4456-8337-a100fa5ee0fa">
 </p>
 
 #### Comparison of Track Numbers in Playlists
@@ -599,13 +599,13 @@ plt.show()  # Show the pie chart
 
 ``` python
 # Group by 'key' and 'mode' and calculate the average streams
-key_mode_analysis = cleaned.groupby(['key', 'mode'])['streams'].mean().reset_index() 
+key_mode_analysis = cleaned.groupby(['key', 'mode'])['streams'].sum().reset_index() 
 
 # Filter for Major and Minor modes
 key_mode_analysis = key_mode_analysis[key_mode_analysis['mode'].isin(['Major', 'Minor'])]
 
 # Calculate average streams for Major and Minor for each key
-avg_streams = key_mode_analysis.groupby(['key', 'mode'])['streams'].mean().unstack().fillna(0)
+avg_streams = key_mode_analysis.groupby(['key', 'mode'])['streams'].sum().unstack().fillna(0)
 
 # Set the colors for Major and Minor
 colors = ['#FFB6C1', '#FF69B4']  # Light Pink for Major, Barbie Pink for Minor
@@ -623,7 +623,7 @@ plt.tight_layout()  # Adjust layout to prevent overlap of elements
 plt.show()  # Show the graph
 ```
 <p align="center">
-<img width="572" alt="Screenshot 2024-11-03 at 5 47 44 PM" src="https://github.com/user-attachments/assets/3a2ca6e4-8433-454b-87cb-adf221245541">
+    <img width="489" alt="Screenshot 2024-11-07 at 2 24 19 PM" src="https://github.com/user-attachments/assets/39a2a90e-515f-4af8-944a-4c675e47dc16">
 </p>
 
 #### Patterns in Streams by Key and Mode
@@ -691,7 +691,7 @@ plt.tight_layout()  # Adjust layout
 plt.show()  # Show the graph
 ```
 <p align="center">
-<img width="898" alt="Screenshot 2024-11-04 at 12 18 11 AM" src="https://github.com/user-attachments/assets/fd5bcbec-402b-424c-be58-f78fe87762da">
+    <img width="648" alt="Screenshot 2024-11-07 at 2 26 58 PM" src="https://github.com/user-attachments/assets/05e8f347-e21f-4fad-83c9-42da1fb29b07">
 </p>
 
 #### Artist and Genre Analysis
