@@ -673,7 +673,7 @@ plt.show()  # Show the graph
 #### Artist and Genre Analysis
 ``` The analysis reveals that the top 10 artists tend to have significantly more appearances in playlists compared to charts.```
 
-# Insights
+# Insights and Recommendations
 #### Loading the CSV File: 
 ```As seen, I use encoding='latin1' in my code when loading the CSV file. Without it, the file cannot be read due to non-ASCII characters not being supported by the default encoding. To resolve this issue, options like encoding='latin1', encoding='cp1252', or 'encoding='iso-8859-1' can be used. When working with datasets that may contain special characters, it’s important to specify the correct encoding to prevent loading issues.```
 
@@ -709,7 +709,20 @@ plt.show()  # Show the graph
 ```As seen in the pie chart, Spotify leads in platform popularity, followed by Deezer and Apple Music. This trend holds for both the total number of tracks across platforms and the comparison of track numbers in playlists. Since Spotify dominates the most, it suggests there are larger users using this app and artists may prioritize releasing music and promotions in Spotify.```
 
 #### Mode and Key Analysis
-`In nearly all of the keys, the major dominates, with the minor scale only dominating twice (key B and key C#). major keys may have a more upbeat, positive sound, while tracks in minor keys might have a melancholic or serious tone. Hence, this suggests that major keys are more likely to appeal to a wider audience as it gives a lively and positive track to the public.`
+```In nearly all of the keys, the major dominates, with the minor scale only dominating twice (key B and key C#). major keys may have a more upbeat, positive sound, while tracks in minor keys might have a melancholic or serious tone. Hence, this suggests that major keys are more likely to appeal to a wider audience as it gives a lively and positive track to the public.```
+
+#### Genre and Music Characteristics Section
+```The generated correlations from the heatmap are negative, which may suggest an inverse relationship between music characteristics and stream counts. Since song streams can’t be negative, the negative correlations might be misleading or artifacts of how the correlation matrix was computed. To resolve this, consider setting negative values to zero or treating them as neutral. This makes the heatmap more meaningful. If negative correlations persist, normalizing the data first can help by scaling values consistently and reducing the impact of outliers.```
+
+#### Music Producers and Artists
+```For Music Producers and Artists, I recommend focusing on high-energy, danceable tracks with a positive mood, as these are commonly seen in successful tracks. Additionally, pay attention to release timing and the months when the music industry is most active—releasing new music during these times could help increase track visibility.```
+
+#### Streaming Platforms
+```For Streaming Platforms, it is important to track trends between streams and musical attributes like tempo and mood. These insights can be used to recommend similar songs or create curated playlists. Also, given the platform distribution, ensure popular tracks are available across multiple platforms for wider reach.```
+
+#### Music Analysts and Marketers
+```For Music Analysts and Marketers, analyzing trends in release years and months to better understand the broader music market and identify peak times for new releases. You can also conduct targeted marketing based on which platforms are most popular for specific tracks and artists.```
+
 
 # References 
 * Camilleri, P., & McKinney, T. (2015, October 22). Plotting a 2D heatmap. Stack Overflow. https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap
