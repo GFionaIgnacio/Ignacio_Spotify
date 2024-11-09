@@ -32,7 +32,7 @@ from tabulate import tabulate
 ##### 5. Matplotlib.colors: 
 ###### For handling colors in Matplotlib visualizations.
 ``` python
-import matplotlib.colors as mcolors
+from matplotlib.colors import LinearSegmentedColormap
 ```
 
 ## Dataset
